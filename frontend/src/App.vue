@@ -13,6 +13,8 @@
 
 
 <script>
+import axios from 'axios';
+
 export default {
   data() {
     return {
@@ -21,9 +23,16 @@ export default {
     };
   },
   methods: {
-    sendMessage() {
-      if (this.newMessage.trim() !== '') {
-        this.messages.push({ text: this.newMessage });
+    sendMessage() {     //用户点击“发送”按钮时调用的方法
+      if (this.newMessage.trim() !== '') { //如果用户输入的消息不为空（去除首尾空格后）
+        axios.post('http://localhost:3000/chat', { message: this.newMessage }) //发起一个 POST 请求到后端/chat 携带用户输入的消息(请求体)
+        .then(response => { //收到后端的响应时，执行.then的代码块
+          this.messages.push({ text: this.newMessage, sender: 'user' }); //将用户输入的消息添加到 messages 数组中，以在界面上显示
+          this.messages.push({ text: response.data.reply, sender: 'gpt' }); //将从后端获取的回应添加到 messages 数组中
+        })
+        .catch(error => {  //如果请求失败 
+            console.error('Error sending message:', error);  // 17
+        });
         this.newMessage = ''; // 清空输入框
       }
     },
