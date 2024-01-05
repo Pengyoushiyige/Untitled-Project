@@ -17,3 +17,5 @@
       交互界面 自行填入Apikey
       前端交互  多thread enter键发送 显示用户与GPT
       加一些可以选择的初始prompt
+      选择OpenAI的各种各样的模型调节一些基本参数
+      
