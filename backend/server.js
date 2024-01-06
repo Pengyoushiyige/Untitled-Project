@@ -1,17 +1,17 @@
 // Import necessary libraries
 import OpenAI from 'openai';
 import express from 'express';
+import cors from 'cors';
 
 // Initialize OpenAI API configuration
 const openai = new OpenAI({
   apiKey: process.env['OPENAI_API_KEY'] 
 });
 
-// Initialize Express application
-const app = express();
+const app = express();// Initialize Express application
 
-// 解析 JSON 格式的请求体
-app.use(express.json());
+app.use(express.json());// 解析 JSON 格式的请求体
+app.use(cors());//使用cors中间件来允许跨域请求
 
 // 处理聊天请求的端点
 app.post('/chat', async (req, res) => {
