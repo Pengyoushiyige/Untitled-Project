@@ -6,6 +6,15 @@
         {{ message.text }}
       </div>
     </div>
+    <div id="model-selector">
+      <!-- 聊天窗口和其他元素 -->
+      <label for="model-select">选择模型:</label>
+      <select id="model-select" v-model="selectedModel">
+        <option value="gpt">GPT</option>
+        <option value="gemini">Gemini</option>
+        <option value="claude">Claude</option>
+      </select>
+    </div>    
     <input v-model="newMessage" type="text" placeholder="输入信息...">
     <button @click="sendMessage">发送</button>
   </div>
@@ -15,11 +24,12 @@
 <script>
 import axios from 'axios';
 
-export default {
+export default {  
   data() {
     return {
       newMessage: '',   // 用户输入的新消息
       messages: [],     // 存储所有消息的数组
+      selectedModel: 'gpt', // 默认选中的模型
     };
   },
   methods: {
@@ -35,6 +45,13 @@ export default {
         });
         this.newMessage = ''; // 清空输入框
       }
+      /*
+      const payload = {
+      message: this.newMessage,
+      model: this.selectedModel, // 现在包括选中的模型
+      };
+    // ... 发送payload到后端 ...
+    */
     },
   },
 };
@@ -64,6 +81,13 @@ input[type="text"] {
 button {
   width: 20%;
   padding: 5px;
+}
+#model-selector {
+  margin-bottom: 1rem;
+}
+#model-select {
+  padding: .5rem;
+  font-size: 1rem;
 }
 
 </style>
