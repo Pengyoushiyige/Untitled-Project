@@ -8,7 +8,7 @@ const openai = new OpenAI({
 });
 
 // 处理聊天请求的端点
-router.post('/chat', async (req, res) => {
+router.post('/', async (req, res) => {
     try {
         const userMessage = req.body.message;
   
