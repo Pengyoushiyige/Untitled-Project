@@ -1,10 +1,11 @@
 // Import necessary libraries
 import express from 'express';
-import cors from 'cors';
+import cors from 'cors'; //前端后端通信，跨域请求用的
+import dotenv from 'dotenv'; //加载环境变量用的
+dotenv.config();
 
 import OpenAIChatRoutes from './routes/OpenAIChatRoutes.js';
 import GeminiChatRoutes from './routes/GeminiChatRoutes.js';
-
 
 const app = express();// Initialize Express application
 
@@ -12,8 +13,8 @@ app.use(express.json());// 解析 JSON 格式的请求体
 app.use(cors());//使用cors中间件来允许跨域请求
 
 
-app.use('/api/chat/openai', OpenAIChatRoutes);
-app.use('/api/chat/gemini', GeminiChatRoutes);
+//app.use('/api/openai', OpenAIChatRoutes);
+app.use('/api/gemini', GeminiChatRoutes);
 
 // 启动服务器
 const port = 3000;

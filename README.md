@@ -1,5 +1,6 @@
 未命名的毕业设计
-
+node server.js启动服务器
+npm run serve启动vue应用
 24.1.2 Day1 
   前端开发
     使用Vue CLI成功初始化了前端项目;
