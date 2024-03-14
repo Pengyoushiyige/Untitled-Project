@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fetch Test</title>
+</head>
+<body>
+    <button id="sendRequest">Send Request</button>
+
+    <script>
+        document.getElementById('sendRequest').addEventListener('click', function() {
+            fetch('http://localhost:3000/gemini', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    history: [], // 根据需要填充历史对话
+                    message: 'Hello, AI!' // 模拟的用户消息
+                }),
+            }).then(response => response.json())
+              .then(data => console.log(data))
+              .catch(error => console.error('Error:', error));
+        });
+    </script>
+</body>
+</html>

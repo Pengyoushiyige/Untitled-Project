@@ -12,6 +12,13 @@ npm run serve启动vue应用
 
 24.3.11 
   尝试结构化重构代码，把原来的server.js里的代码按功能拆了一部分到./routes文件夹
+
+24.3.13
+  完成GeminiChatRoutes.js，未来要写支持多轮对话
+
+24.3.14-15
+  通宵写出了由react移植到vue的重构版前端界面，后端实现了多轮对话
+  但是测试死活不通过中 不明白
     仍需完成:
       连接前后端
       支持Gemini Pro的APi
