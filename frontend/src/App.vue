@@ -62,10 +62,10 @@ export default { //导出了一个对象,这个对象定义了Vue组件的选项
             message: this.value
           }),
           headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json'//提醒服务器以JSON方式解析数据
           }
         }
-        const response = await fetch('http://localhost:3000/gemini', options);
+        const response = await fetch('http://localhost:3000/gemini', options); //使用fetch API提供要发送的数据设置请求头
         const data = await response.text();
         console.log(data);
         // 更新聊天历史并清空当前输入
