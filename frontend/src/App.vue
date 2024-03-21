@@ -1,5 +1,6 @@
 <template>
   <div class="app">
+    <ModelSwitcher @modelChanged="handleModelChange" />
     <p>What do you want to know?
       <button @click="surprise" :disabled="chatHistory.length > 0">Surprise me</button>
     </p>
@@ -20,6 +21,8 @@
 
 
 <script>
+import ModelSwitcher from './components/ModelSwitcher.vue';
+
 const surpriseOptions = [
   'Who won the latest Nobel Peace Prize?',
   'Where does pizza come from?',
@@ -35,7 +38,14 @@ export default { //导出了一个对象,这个对象定义了Vue组件的选项
       chatHistory: [],
     };
   },
+  components: {
+    ModelSwitcher,
+  },
   methods: {
+    handleModelChange(newModel) {
+      console.log("Selected model:", newModel);
+      // 在这里处理模型切换逻辑，例如发送请求到后端等
+    },
     clear() {
       // 清空问题输入框
       this.value = '';
