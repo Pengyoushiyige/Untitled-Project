@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <ModelSwitcher @modelChanged="handleModelChange" />
+    <model-switcher @modelActivated="handleModelActivated"></model-switcher>
     <p>What do you want to know?
       <button @click="surprise" :disabled="chatHistory.length > 0">Surprise me</button>
     </p>
@@ -42,10 +42,15 @@ export default { //导出了一个对象,这个对象定义了Vue组件的选项
     ModelSwitcher,
   },
   methods: {
-    handleModelChange(newModel) {
-      console.log("Selected model:", newModel);
-      // 在这里处理模型切换逻辑，例如发送请求到后端等
+    handleModelActivated(model) {
+      console.log("Model activated:", model);
+      // 根据新激活的模型执行必要的更新，例如清空聊天历史等
+      this.chatHistory = [];
+      // 如果有必要，可以在这里更新 currentModel 状态，但要确保这个状态的定义和更新逻辑
     },
+
+
+
     clear() {
       // 清空问题输入框
       this.value = '';
@@ -65,6 +70,7 @@ export default { //导出了一个对象,这个对象定义了Vue组件的选项
         return;
       }
       try {
+        const url = `http://localhost:3000/chat/${this.currentModel}`; // 假设您在data中定义了currentModel来存储当前选中的模型
         const options = {
           method: 'POST',
           body: JSON.stringify({
@@ -75,7 +81,7 @@ export default { //导出了一个对象,这个对象定义了Vue组件的选项
             'Content-Type': 'application/json'//提醒服务器以JSON方式解析数据
           }
         }
-        const response = await fetch('http://localhost:3000/gemini', options); //使用fetch API提供要发送的数据设置请求头
+        const response = await fetch(url, options); //使用fetch API提供要发送的数据设置请求头
         const data = await response.text();
         console.log(data);
         // 更新聊天历史并清空当前输入

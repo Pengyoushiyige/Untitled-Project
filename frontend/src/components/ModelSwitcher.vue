@@ -14,13 +14,33 @@
 export default {
   data() {
     return {
-      selectedModel: 'gemini', // 默认选中的模型
+      currentModel: 'gemini', // 默认选中的模型
     };
   },
   methods: {
-    onModelChange() {
-      // 通知父组件选中的模型发生变化
-      this.$emit('modelChanged', this.selectedModel);
+    changeModel() {
+      // 在这里直接发送请求到后端，根据currentModel的值动态更改请求的URL
+      const url = `http://localhost:3000/chat/${this.currentModel}`;
+      fetch(url, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          // 根据后端需要的信息构造请求体
+          history: [], // 假设切换模型时清空历史
+          message: '', // 切换模型时可能不需要发送具体消息
+        }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        console.log(`${this.currentModel} model activated successfully`, data);
+        // 可以在这里通过事件通知 App.vue，例如更新聊天历史等
+        this.$emit('modelActivated', this.currentModel);
+      })
+      .catch(error => {
+        console.error(`Error activating ${this.currentModel} model:`, error);
+      });
     },
   },
 };
