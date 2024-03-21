@@ -36,21 +36,20 @@ export default { //导出了一个对象,这个对象定义了Vue组件的选项
       results: [], // 存放搜索结果的数组
       value: '',
       chatHistory: [],
+      currentModel: 'gemini', // 默认模型
     };
   },
   components: {
     ModelSwitcher,
   },
   methods: {
-    handleModelActivated(model) {
-      console.log("Model activated:", model);
+    handleModelActivated(selectedModel) {
+      console.log("Model activated:", selectedModel);
       // 根据新激活的模型执行必要的更新，例如清空聊天历史等
       this.chatHistory = [];
       // 如果有必要，可以在这里更新 currentModel 状态，但要确保这个状态的定义和更新逻辑
+      this.currentModel = selectedModel;
     },
-
-
-
     clear() {
       // 清空问题输入框
       this.value = '';
@@ -82,7 +81,7 @@ export default { //导出了一个对象,这个对象定义了Vue组件的选项
           }
         }
         const response = await fetch(url, options); //使用fetch API提供要发送的数据设置请求头
-        const data = await response.text();
+        const data = await response.text();  //后端返回的是纯文本可以这么写，如果后端实际返回的是JSON格式，用await response.json()
         console.log(data);
         // 更新聊天历史并清空当前输入
         this.chatHistory.push(

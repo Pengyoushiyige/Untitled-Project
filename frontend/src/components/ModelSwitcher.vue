@@ -2,8 +2,8 @@
 
 <template>
   <div>
-    <select v-model="selectedModel" @change="onModelChange">
-      <option value="openAI">OpenAI</option>
+    <select v-model="selectedModel" @change="changeModel">
+      <option value="openai">OpenAI</option>
       <option value="gemini">Gemini</option>
       <option value="claude">Claude</option>
     </select>
@@ -14,13 +14,13 @@
 export default {
   data() {
     return {
-      currentModel: 'gemini', // 默认选中的模型
+      selectedModel: 'gemini', // 默认选中的模型
     };
   },
   methods: {
     changeModel() {
-      // 在这里直接发送请求到后端，根据currentModel的值动态更改请求的URL
-      const url = `http://localhost:3000/chat/${this.currentModel}`;
+      // 在这里直接发送请求到后端，根据selectedModel的值动态更改请求的URL
+      const url = `http://localhost:3000/chat/${this.selectedModel}`;
       fetch(url, {
         method: 'POST',
         headers: {
@@ -34,12 +34,12 @@ export default {
       })
       .then(response => response.json())
       .then(data => {
-        console.log(`${this.currentModel} model activated successfully`, data);
+        console.log(`${this.selectedModel} model activated successfully`, data);
         // 可以在这里通过事件通知 App.vue，例如更新聊天历史等
-        this.$emit('modelActivated', this.currentModel);
+        this.$emit('modelActivated', this.selectedModel);
       })
       .catch(error => {
-        console.error(`Error activating ${this.currentModel} model:`, error);
+        console.error(`Error activating ${this.selectedModel} model:`, error);
       });
     },
   },
