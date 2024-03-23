@@ -1,3 +1,5 @@
+// frontend/src/App.vue
+
 <template>
   <div class="app">
     <model-switcher @modelActivated="handleModelActivated"></model-switcher>

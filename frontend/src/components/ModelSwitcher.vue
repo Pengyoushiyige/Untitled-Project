@@ -1,4 +1,4 @@
-// src/components/ModelSwitcher.vue
+// frontend/src/components/ModelSwitcher.vue
 
 <template>
   <div>

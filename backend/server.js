@@ -1,4 +1,4 @@
-// Import necessary libraries
+// backend/server.js/GeminiChatRoutes.js
 import express from 'express';
 import cors from 'cors'; //前端后端通信，跨域请求用的
 import dotenv from 'dotenv'; //加载环境变量用的
