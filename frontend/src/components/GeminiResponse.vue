@@ -1,9 +1,6 @@
 // frontend/src/components/GeminiResponse.vue
 <template>
   <div>
-    <!--<div class="input-container">
-      <button @click="getResponse">Ask me</button>
-    </div>-->
     <p v-if="error">{{ error }}</p> <!-- 条件渲染错误信息 -->
   </div>
 </template>

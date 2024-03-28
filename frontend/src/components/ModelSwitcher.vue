@@ -14,7 +14,7 @@
 export default {
   data() {
     return {
-      selectedModel: 'gemini', // 默认选中的模型
+      selectedModel: 'openai', // 默认选中的模型
     };
   },
   methods: {

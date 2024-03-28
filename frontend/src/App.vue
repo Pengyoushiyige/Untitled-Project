@@ -29,9 +29,9 @@
 
 <script>
 import ModelSwitcher from './components/ModelSwitcher.vue';
-import GeminiResponse from './components/GeminiResponse.vue';
-//import OpenAIResponse from './components/OpenAIResponse.vue';
-
+import OpenAIResponse from './components/OpenAIResponse.vue';
+//import GeminiResponse from './components/GeminiResponse.vue';
+//import ClaudeResponse from './components/ClaudeResponse.vue';
 
 const surpriseOptions = [
   'Who won the latest Nobel Peace Prize?',
@@ -46,13 +46,13 @@ export default { //导出了一个对象,这个对象定义了Vue组件的选项
       results: [], // 存放搜索结果的数组
       value: '', //存储用户的输入
       chatHistory: [],
-      currentModel: 'gemini', // 默认模型
+      currentModel: 'openai', // 默认模型
     };
   },
   components: {
     ModelSwitcher,
-    GeminiResponse,
-    //OpenAIResponse,
+    //GeminiResponse,
+    OpenAIResponse,
     //ClaudeResponse,
   },
   computed: { //使用计算属性currentComponent来确定应该渲染哪个组件
