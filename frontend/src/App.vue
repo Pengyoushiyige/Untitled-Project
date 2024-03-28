@@ -30,7 +30,7 @@
 <script>
 import ModelSwitcher from './components/ModelSwitcher.vue';
 import OpenAIResponse from './components/OpenAIResponse.vue';
-//import GeminiResponse from './components/GeminiResponse.vue';
+import GeminiResponse from './components/GeminiResponse.vue';
 //import ClaudeResponse from './components/ClaudeResponse.vue';
 
 const surpriseOptions = [
@@ -51,7 +51,7 @@ export default { //导出了一个对象,这个对象定义了Vue组件的选项
   },
   components: {
     ModelSwitcher,
-    //GeminiResponse,
+    GeminiResponse,
     OpenAIResponse,
     //ClaudeResponse,
   },
@@ -79,6 +79,7 @@ export default { //导出了一个对象,这个对象定义了Vue组件的选项
       this.value = '';
       this.error = "";
       this.chatHistory = [];
+      alert('All clear!'); 
     },
     setError(errorMessage) {// 示例方法：模拟设置错误状态
       this.error = errorMessage;
