@@ -31,7 +31,7 @@
 import ModelSwitcher from './components/ModelSwitcher.vue';
 import OpenAIResponse from './components/OpenAIResponse.vue';
 import GeminiResponse from './components/GeminiResponse.vue';
-//import ClaudeResponse from './components/ClaudeResponse.vue';
+import ClaudeResponse from './components/ClaudeResponse.vue';
 
 const surpriseOptions = [
   'Who won the latest Nobel Peace Prize?',
@@ -53,14 +53,14 @@ export default { //导出了一个对象,这个对象定义了Vue组件的选项
     ModelSwitcher,
     GeminiResponse,
     OpenAIResponse,
-    //ClaudeResponse,
+    ClaudeResponse,
   },
   computed: { //使用计算属性currentComponent来确定应该渲染哪个组件
     currentComponent() {
       switch (this.currentModel) {
         case 'openai': return 'OpenAIResponse';
         case 'gemini': return 'GeminiResponse';
-        //case 'claude': return 'ClaudeResponse';
+        case 'claude': return 'ClaudeResponse';
         // 添加更多模型对应的分支...
         default: return null;
       }
