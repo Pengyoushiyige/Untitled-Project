@@ -35,7 +35,7 @@ export default {
         const data = await response.json(); // 假设后端返回JSON格式的数据 这里和Gemini不同
         console.log(data);
         // 处理返回的数据，例如更新聊天历史
-        this.$emit('update-chat-history', [{ role: "user", parts: this.value }, { role: "system", parts: data.reply }]); //只用给历史记录中增加本轮的用户和AI的对话即可
+        this.$emit('update-chat-history', [{ role: "user", content: this.value }, { role: "system", content: data.reply }]); //只用给历史记录中增加本轮的用户和AI的对话即可
         this.$emit('update-value', ''); // 清空当前输入
       } catch (error) {
         console.error("Fetch error:", error);

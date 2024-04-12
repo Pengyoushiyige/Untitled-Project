@@ -94,3 +94,31 @@ p{
     font-weight: 200;
     border-radius: 6px;
 }
+
+.settings-button {
+    /* Styling the settings button to match the app's theme */
+    background-color: #ececf1;
+    color: #000;
+    border: none;
+    border-radius: 5px;
+    font-weight: 600;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-left: 10px; /* Add some space between the model switcher and the settings button */
+  }
+  
+  .settings-button:hover {
+    background-color: #ddd; /* Slightly darker on hover for feedback */
+  }
+  
+  .settings-button:active {
+    background-color: #cacaca; /* Even darker when active/pressed */
+  }
+
+  .top-controls {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Align to the left */
+  }
+  
+  

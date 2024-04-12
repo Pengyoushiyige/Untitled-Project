@@ -3,7 +3,7 @@ import express from 'express';
 import cors from 'cors'; //前端后端通信，跨域请求用的
 import dotenv from 'dotenv'; //加载环境变量用的
 dotenv.config({ path: './API_Key.env' });
-
+import settingsRoutes from './routes/settings.js';//先加载并执行设置，因为要初始化环境变量
 import OpenAIChatRoutes from './routes/OpenAIChatRoutes.js';
 import GeminiChatRoutes from './routes/GeminiChatRoutes.js';
 import ClaudeChatRoutes from './routes/ClaudeChatRoutes.js';
@@ -11,6 +11,9 @@ import ClaudeChatRoutes from './routes/ClaudeChatRoutes.js';
 const app = express();// Initialize Express application
 app.use(express.json());// 解析 JSON 格式的请求体
 app.use(cors());//使用cors中间件来允许跨域请求
+
+// 使用设置相关的路由
+app.use(settingsRoutes);
 
 app.use(OpenAIChatRoutes);
 app.use(GeminiChatRoutes);

@@ -12,6 +12,9 @@
 
 <script>
 export default {
+  // props: {
+  //   currentModel: String,
+  // },
   data() {
     return {
       selectedModel: 'openai', // 默认选中的模型
@@ -19,6 +22,7 @@ export default {
   },
   methods: {
     changeModel() {
+      this.$emit('modelActivated', this.selectedModel);
       // 在这里直接发送请求到后端，根据selectedModel的值动态更改请求的URL
       const url = `http://localhost:3000/chat/${this.selectedModel}`;
       fetch(url, {

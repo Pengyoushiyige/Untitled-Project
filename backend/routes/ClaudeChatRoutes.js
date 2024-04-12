@@ -1,39 +1,30 @@
 // backend/routes/ClaudeChatRoutes.js
 import express from 'express';
 import OpenAI from 'openai';
-import dotenv from 'dotenv';
-import path from 'path'; // 引入path模块模块来构建指向.env文件的绝对路径
-import { fileURLToPath } from 'url'; // 引入fileURLToPath
-const __filename = fileURLToPath(import.meta.url);// 获取当前文件的绝对路径
-const __dirname = path.dirname(__filename);// 获取当前文件所在目录的绝对路径
-const envPath = path.resolve(__dirname, '../API_Key.env');// 构建.env文件的绝对路径，确保它能够在任何地方被正确加载
-dotenv.config({ path: envPath }); //.env在父目录
 
 const router = express.Router();
 // Initialize OpenAI API configuration 使用第三方中转api 所以依然使用openAI sdk
 const openai = new OpenAI({
-    //apiKey: process.env.CLAUDE_API_KEY,
-    //baseURL: process.env.CLAUDE_API_URL,
-    apiKey: 'sk-2bYtI9T0Ee0Zfjn2C0B14f6153804c01A4Ef41AbDe8282B0',
-    baseURL: "https://www.gptapi.us/v1",
+    apiKey: global.settings.claude.apiKey,
+    baseURL: global.settings.claude.endpoint,
 });
 
 //验证环境变量是否被正确加载
-console.log(`已加载CLAUDE_API_KEY: ${process.env.CLAUDE_API_KEY}`);
-console.log(`已加载CLAUDE_API_URL: ${process.env.CLAUDE_API_URL}`);
+console.log(`已加载CLAUDE_API_KEY: ${global.settings.claude.apiKey}`);
+console.log(`已加载CLAUDE_API_URL: ${global.settings.claude.endpoint}`);
 
 // 处理聊天请求的端点
 router.post('/chat/claude', async (req, res) => {
     try {
         const history = Array.isArray(req.body.history) ? req.body.history : []; // 确保 history 是一个数组
-        if (history.length === 0) {
-            history.push({ role: "system", content: "You are a helpful assistant." }); //初始系统消息
-        }
+         if (history.length === 0) {
+             history.push({ role: "system", content: "You are a helpful assistant." }); //初始系统消息
+         }
         const messages = [...history, req.body.message]; 
         console.log(messages);
         // 使用 OpenAI API 获取回复
         const completion = await openai.chat.completions.create({
-            model: "claude-3-haiku",// 使用您选择的模型
+            model: "claude-3-haiku-20240307",
             //messages的期望形式[{"role": "system", "content": "You are a helpful assistant."},req.body.history,req.body.message],
             messages: messages, // 将历史对话和当前消息一起作为参数传递
             max_tokens: 150 // 根据需要调整
