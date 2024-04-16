@@ -23,4 +23,4 @@ COPY . .
 EXPOSE 3003
 
 # 设置容器启动后执行的命令
-CMD ["node", "/app/ChatTao/Untitled-Project/backend/server.js"]
+CMD ["node", "/ChatTao/Untitled-Project/backend/server.js"]
