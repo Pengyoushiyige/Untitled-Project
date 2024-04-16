@@ -9,7 +9,7 @@ WORKDIR /app/ChatTao
 COPY package.json package-lock.json ./
 
 RUN npm config set registry 'https://registry.npmmirror.com/'
-RUN npm install
+
 
 FROM base AS builder
 
@@ -26,6 +26,7 @@ RUN npm run build
 
 FROM base AS runner
 
-WORKDIR /app/ChatTao/ChatTao
 
 EXPOSE 3003
+
+CMD ["node", "server.js"]
