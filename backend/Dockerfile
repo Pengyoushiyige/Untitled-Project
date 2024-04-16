@@ -5,7 +5,7 @@ FROM node:18-alpine AS base
 RUN apk add --no-cache libc6-compat
 
 # 设置工作目录
-WORKDIR /app
+WORKDIR /app/ChatTao/Untitled-Project/backend
 
 # 复制 package.json 和 package-lock.json 文件
 COPY package.json package-lock.json ./
@@ -23,4 +23,4 @@ COPY . .
 EXPOSE 3003
 
 # 设置容器启动后执行的命令
-CMD ["node", "/ChatTao/Untitled-Project/backend/server.js"]
+CMD ["node", "server.js"]
