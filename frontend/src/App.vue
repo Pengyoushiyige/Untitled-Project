@@ -22,7 +22,7 @@
         
         <p  v-if="this.currentModel==='openai'" class="answer">{{ chatItem.role }}: {{ chatItem.content}}</p>
         <p  v-if="this.currentModel==='gemini'" class="answer">{{ chatItem.role }}: {{ chatItem.parts}}</p>
-        <p  v-if="this.currentModel==='claude'" class="answer">{{ chatItem.role }}: {{ chatItem.parts}}</p>
+        <p  v-if="this.currentModel==='claude'" class="answer">{{ chatItem.role }}: {{ chatItem.content}}</p>
         <!--展示每条聊天记录的角色和内容-->
       </div>
     </div>

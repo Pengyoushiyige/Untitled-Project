@@ -11,7 +11,11 @@ router.post('/chat/gemini',async(req,res)=>{   //Express路由处理器，响应
   //异步函数async (req,res)的意义在于，当前端向/route发送post请求的时候，运行这个函数
   console.log(req.body.history)  
   console.log(req.body.message)
-  const model = genAI.getGenerativeModel({model:"gemini-pro"}) //写在异步函数里面:每个请求都会有自己的model实例，互不干扰
+  const generationConfig = {
+    maxOutputTokens: global.settings.gemini.maxTokens,
+    temperature: global.settings.gemini.temperature,
+  };  
+  const model = genAI.getGenerativeModel({model:"gemini-pro", generationConfig }) //写在异步函数里面:每个请求都会有自己的model实例，互不干扰
   const chat = model.startChat({
     history:req.body.history
   })

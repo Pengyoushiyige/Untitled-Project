@@ -24,10 +24,11 @@ router.post('/chat/openai', async (req, res) => {
         console.log(messages);
         // 使用 OpenAI API 获取回复
         const completion = await openai.chat.completions.create({
-            model: "gpt-3.5-turbo", // 使用您选择的模型
+            model: global.settings.openAI.model, // 使用您选择的模型
             //messages的期望形式[{"role": "system", "content": "You are a helpful assistant."},req.body.history,req.body.message],
             messages: messages, // 将历史对话和当前消息一起作为参数传递
-            max_tokens: 150 // 根据需要调整
+            temperature: global.settings.openAI.temperature,
+            max_tokens: global.settings.openAI.maxTokens, // 根据需要调整
         });
   
         // 将回复发送回前端

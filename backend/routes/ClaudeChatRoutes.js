@@ -24,10 +24,11 @@ router.post('/chat/claude', async (req, res) => {
         console.log(messages);
         // 使用 OpenAI API 获取回复
         const completion = await openai.chat.completions.create({
-            model: "claude-3-haiku-20240307",
+            model: global.settings.claude.model,
             //messages的期望形式[{"role": "system", "content": "You are a helpful assistant."},req.body.history,req.body.message],
             messages: messages, // 将历史对话和当前消息一起作为参数传递
-            max_tokens: 150 // 根据需要调整
+            temperature:global.settings.claude.temperature,
+            max_tokens: global.settings.claude.maxTokens,
         });
   
         // 将回复发送回前端

@@ -30,7 +30,7 @@ export default {
           headers: {
             'Content-Type': 'application/json'
           }
-        }; //gemini那边没有分号 谁是对的
+        }; //gemini那边没有分号 谁是对的？
         const response = await fetch(url, options);
         const data = await response.json(); // 假设后端返回JSON格式的数据 这里和Gemini不同
         console.log(data);
