@@ -28,4 +28,4 @@ FROM base AS runner
 
 WORKDIR /app/ChatTao/ChatTao
 
-EXPOSE 3000
+EXPOSE 3003
