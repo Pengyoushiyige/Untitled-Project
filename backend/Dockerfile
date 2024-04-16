@@ -4,7 +4,7 @@ FROM base AS deps
 
 RUN apk add --no-cache libc6-compat
 
-WORKDIR /app/ChatTao/Untitled-Project/backend/
+WORKDIR /app/ChatTao/Untitled-Project/backend
 
 COPY package.json package-lock.json ./
 
