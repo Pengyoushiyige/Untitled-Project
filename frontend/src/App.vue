@@ -76,13 +76,40 @@ export default { //导出了一个对象,这个对象定义了Vue组件的选项
       }
     }
   },
+  created() {
+    const savedHistory = localStorage.getItem('chatHistory');
+    if (savedHistory) {
+      this.chatHistory = JSON.parse(savedHistory);
+    }
+  },
   methods: {
     handleModelActivated(selectedModel) {
       console.log("Model activated:", selectedModel);
-      // 根据新激活的模型执行必要的更新，例如清空聊天历史等
-      this.chatHistory = [];
-      // 如果有必要，可以在这里更新 currentModel 状态，但要确保这个状态的定义和更新逻辑
-      this.currentModel = selectedModel;
+      if (this.currentModel !== selectedModel) { //当前模型与选中的模型不同,执行聊天历史转换函数
+      this.chatHistory = this.convertChatHistory(this.chatHistory, this.currentModel, selectedModel);
+    }
+      this.currentModel = selectedModel; //更新当前模型状态
+    },
+    convertChatHistory(history, currentModel, selectedModel) { //聊天历史转换
+      let newHistory = history.map(item => {
+        if (currentModel === 'gemini' && (selectedModel === 'openai' || selectedModel === 'claude')) {
+          // 从 Gemini 切换到 OpenAI 或 Claude
+          return {
+            role: item.role === 'model' ? 'system' : 'user',
+            content: item.parts // Gemini使用parts, 转换为content
+          };
+        } else if ((currentModel === 'openai' || currentModel === 'claude') && selectedModel === 'gemini') {
+          // 从 OpenAI 或 Claude 切换到 Gemini
+          return {
+            role: item.role === 'system' ? 'model' : 'user',
+            parts: item.content // OpenAI和Claude使用content, 转换为parts
+          };
+        } else {
+          // OpenAI与Claude之间切换格式一样
+          return item;
+        }
+      });
+      return newHistory;
     },
     clear() {
       // 清空问题输入框
@@ -101,6 +128,7 @@ export default { //导出了一个对象,这个对象定义了Vue组件的选项
     updateChatHistory(newItems) {
       newItems.forEach(item => {
         this.chatHistory.push(item);
+        localStorage.setItem('chatHistory', JSON.stringify(this.chatHistory)); //更新历史的同时保存到localStorage中
       });
     },
     updateValue(newValue) {
