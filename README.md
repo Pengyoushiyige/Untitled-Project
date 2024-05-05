@@ -1,43 +1,65 @@
-未命名的毕业设计
-node server.js启动服务器
-npm run serve启动vue应用
-24.1.2 Day1 
-  前端开发
-    使用Vue CLI成功初始化了前端项目;
-    在 ./frontend/src/App.vue 中，实现了一个简单的聊天界面，包括用户输入区域和消息显示区域
+# 未命名的毕业设计
+## 快速启动
+### 先决条件
+- Docker 已安装
+- Docker Compose 已安装
+### 部署步骤
+1. **克隆代码仓库：**
+```bash
+git clone https://github.com/yourusername/untitled-project.git
+```
+2. **进入项目目录：**
+```bash
+cd untitled-project
+```
+3. **使用 Docker Compose 启动：**
+```bash
+docker-compose up --build -d
+```
+4. **访问项目前端地址：**
+```bash
+http://localhost:8080
+```
+也可以:
+- node server.js启动后端服务器
+- npm run serve启动前端vue应用
+### 24.1.2 Day1 
+  - **前端开发**
+    - 使用Vue CLI成功初始化了前端项目;
+    - 在 ./frontend/src/App.vue 中，实现了一个简单的聊天界面，包括用户输入区域和消息显示区域
   
-24.1.5 Day3
-  基本的后端完成
-    使用Node.js;需要在这个目录里放一个环境变量的api文件;用Express框架创建了一个简单的Web服务器，并使用了OpenAI库 于OpenAI的API进行交互
+### 24.1.5 Day3
+  - **基本的后端完成**
+    - 使用Node.js;需要在这个目录里放一个环境变量的api文件;用Express框架创建了一个简单的Web服务器，并使用了OpenAI库 于OpenAI的API进行交互
 
-24.3.11 
-  尝试结构化重构代码，把原来的server.js里的代码按功能拆了一部分到./routes文件夹
+### 24.3.11 
+  - 尝试结构化重构代码，把原来的server.js里的代码按功能拆了一部分到./routes文件夹
 
-24.3.13
-  完成GeminiChatRoutes.js，未来要写支持多轮对话
+### 24.3.13
+  - 完成GeminiChatRoutes.js，未来要写支持多轮对话
 
-24.3.14-15
-  通宵写出了由react移植到vue的重构版前端界面，后端实现了多轮对话
-  但是测试死活不通过中 不明白
-    仍需完成:
-      连接前后端
-      支持Gemini Pro的APi
-      部署在云服务器上
-      交互界面 自行填入Apikey
-      前端交互  多thread enter键发送 显示用户与GPT
-      加一些可以选择的初始prompt
-      选择OpenAI的各种各样的模型调节一些基本参数
+### 24.3.14-15
+ -  通宵写出了由react移植到vue的重构版前端界面，后端实现了多轮对话
+  - 但是测试死活不通过中 不明白
+   - **仍需完成:**
+     - 连接前后端      
+     - 支持Gemini Pro的APi
+     - 部署在云服务器上
+     - 交互界面 自行填入Apikey
+     - 前端交互  多thread enter键发送 显示用户与GPT
+     - 加一些可以选择的初始prompt
+     - 选择OpenAI的各种各样的模型调节一些基本参数
       
-24.4.27
-实现功能一览:
-简单友好的用户界面
-模型切换功能：可以无缝切换OpenAI的GPT-3.5-Turbo、
-Gemini Pro、Claude 3 Haiku三种预训练语言模型；
-支持上下文的多轮对话：AI模型对历史聊天记录的记忆
-清空聊天记录：开启新对话
-设置页面:
-API自定义:用户可以在设置界面添加自己的API密钥和端点地址（可选），轻松使用自己购买的API Key
-模型调参:用户可以在设置中选择自己模型的具体型号，比如GPT-3-Turbo等 或者可以自定义模型名，填入自购的第三方中转api的模型；
-调节模型的Temperature、Max Tokens等
-系统默认API:如果用户没有在设置页面中填写自己的API密钥，允许用户使用系统默认的API Key。它们存储在后端的环境变量中，而不是使用具有安全隐患的硬编码的形式存储
-聊天记录保存:聊天记录通过localStorage实现本地浏览器的存储
+### 24.4.27
+- **实现功能一览:**
+  - 简单友好的用户界面
+  - 模型切换功能：可以无缝切换OpenAI的GPT-3.5-Turbo、
+  - Gemini Pro、Claude 3 Haiku三种预训练语言模型；
+  - 支持上下文的多轮对话：AI模型对历史聊天记录的记忆
+  - 清空聊天记录：开启新对话
+  - 设置页面:
+    - API自定义:用户可以在设置界面添加自己的API密钥和端点地址（可选），轻松使用自己购买的API Key
+    - 模型调参:用户可以在设置中选择自己模型的具体型号，比如GPT-3-Turbo等 或者可以自定义模型名，填入自购的第三方中转api的模型；
+    - 调节模型的Temperature、Max Tokens等
+  -系统默认API:如果用户没有在设置页面中填写自己的API密钥，允许用户使用系统默认的API Key。它们存储在后端的环境变量中，而不是使用具有安全隐患的硬编码的形式存储
+  -聊天记录保存:聊天记录通过localStorage实现本地浏览器的存储
