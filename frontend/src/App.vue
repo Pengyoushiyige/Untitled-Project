@@ -8,7 +8,7 @@
       <UserSettings ref="settingsComponent" />
     </div>  
     <p>What do you want to know?
-      <button @click="surprise" :disabled="chatHistory.length > 0">Surprise me</button>
+      <button @click="surprise" :disabled="chatHistory.length > 0">随机话题</button>
     </p>
     <div class="input-container">
       <input v-model="value" placeholder="When is Christmas……?" @input="handleInput" />
@@ -43,9 +43,9 @@ import GeminiResponse from './components/GeminiResponse.vue';
 import ClaudeResponse from './components/ClaudeResponse.vue';
 
 const surpriseOptions = [
-  'Who won the latest Nobel Peace Prize?',
-  'Where does pizza come from?',
-  'How do you make a BLT sandwich?'
+  '最近谁获得了诺贝尔奖?',
+  '披萨起源于哪里?',
+  '如何制作大阪烧?'
 ];
 
 export default { //导出了一个对象,这个对象定义了Vue组件的选项，使得其他文件可以通过import引入并使用这个组件
@@ -116,7 +116,8 @@ export default { //导出了一个对象,这个对象定义了Vue组件的选项
       this.value = '';
       this.error = "";
       this.chatHistory = [];
-      alert('All clear!'); 
+      alert('All clear!');
+      localStorage.setItem('chatHistory', JSON.stringify(this.chatHistory)); 
     },
     setError(errorMessage) {// 示例方法：模拟设置错误状态
       this.error = errorMessage;

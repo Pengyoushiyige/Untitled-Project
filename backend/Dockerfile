@@ -1,3 +1,4 @@
+# backend/Dockerfile
 # 使用 node:18-alpine 作为基础镜像
 FROM node:18-alpine AS base
 
@@ -20,7 +21,7 @@ RUN npm install
 COPY . .
 
 # 暴露容器的 3003 端口
-EXPOSE 3003
+EXPOSE 3000
 
 # 设置容器启动后执行的命令
 CMD ["node", "server.js"]

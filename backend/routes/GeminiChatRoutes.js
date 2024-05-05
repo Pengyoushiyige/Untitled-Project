@@ -25,6 +25,7 @@ router.post('/chat/gemini',async(req,res)=>{   //Express路由处理器，响应
   const response = await result.response
   const text = response.text()
   res.send(text)
+  console.log(text);
 })
 
 export default router;
